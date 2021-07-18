@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import * as dat from "dat.gui";
+import GSAP from "gsap";
 
 import vertexShader from "../shaders/vertex.glsl";
 import fragmentShader from "../shaders/fragment.glsl";
@@ -93,6 +94,7 @@ export default class Canvas {
         uTime: { value: 0 },
         uTexture: { value: uTexture },
         uTextureSize: { value: new THREE.Vector2(100, 100) },
+        uCorners: { value: new THREE.Vector4(0, 0, 0, 0) },
         uProgress: { value: 0 },
         uResolution: { value: new THREE.Vector2(this.width, this.height) },
         uQuadSize: { value: new THREE.Vector2(300, 300) },
@@ -101,6 +103,37 @@ export default class Canvas {
       fragmentShader,
       transparent: true,
     });
+
+    // Timeline.
+    this.tl = new GSAP.timeline()
+      .to(this.material.uniforms.uCorners.value, {
+        x: 1,
+        duration: 1,
+      })
+      .to(
+        this.material.uniforms.uCorners.value,
+        {
+          y: 1,
+          duration: 1,
+        },
+        0.1
+      )
+      .to(
+        this.material.uniforms.uCorners.value,
+        {
+          z: 1,
+          duration: 1,
+        },
+        0.2
+      )
+      .to(
+        this.material.uniforms.uCorners.value,
+        {
+          w: 1,
+          duration: 1,
+        },
+        0.3
+      );
 
     this.mesh = new THREE.Mesh(this.geometry, this.material);
 
@@ -118,7 +151,8 @@ export default class Canvas {
     let ellapsedTime = this.clock.getElapsedTime();
 
     this.material.uniforms.uTime.value = ellapsedTime;
-    this.material.uniforms.uProgress.value = this.settings.progress;
+    // this.material.uniforms.uProgress.value = this.settings.progress;
+    this.tl.progress(this.settings.progress);
 
     this.controls.update();
 
