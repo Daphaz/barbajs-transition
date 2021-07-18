@@ -92,6 +92,7 @@ export default class Canvas {
       uniforms: {
         uTime: { value: 0 },
         uTexture: { value: uTexture },
+        uTextureSize: { value: new THREE.Vector2(100, 100) },
         uProgress: { value: 0 },
         uResolution: { value: new THREE.Vector2(this.width, this.height) },
         uQuadSize: { value: new THREE.Vector2(300, 300) },
@@ -107,7 +108,6 @@ export default class Canvas {
 
     this.mesh.position.x = 200;
     this.mesh.rotation.z = 0.5;
-    this.mesh.scale.set(2, 1, 1);
   }
 
   /**
