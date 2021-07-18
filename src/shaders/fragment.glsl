@@ -1,3 +1,6 @@
+precision highp float;
+
+uniform float uProgress;
 uniform sampler2D uTexture;
 
 varying vec2 vUv;

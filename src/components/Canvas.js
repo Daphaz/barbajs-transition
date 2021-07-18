@@ -83,7 +83,7 @@ export default class Canvas {
    */
 
   addObjects() {
-    this.geometry = new THREE.PlaneBufferGeometry(500, 500, 100, 100);
+    this.geometry = new THREE.PlaneBufferGeometry(300, 300, 100, 100);
 
     const uTexture = this.textureLoader.load(texture);
 
@@ -93,14 +93,21 @@ export default class Canvas {
         uTime: { value: 0 },
         uTexture: { value: uTexture },
         uProgress: { value: 0 },
+        uResolution: { value: new THREE.Vector2(this.width, this.height) },
+        uQuadSize: { value: new THREE.Vector2(300, 300) },
       },
       vertexShader,
       fragmentShader,
+      transparent: true,
     });
 
     this.mesh = new THREE.Mesh(this.geometry, this.material);
 
     this.scene.add(this.mesh);
+
+    this.mesh.position.x = 200;
+    this.mesh.rotation.z = 0.5;
+    this.mesh.scale.set(2, 1, 1);
   }
 
   /**
