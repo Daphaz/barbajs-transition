@@ -16,6 +16,9 @@
   "license": "ISC",
   "devDependencies": {
     "@parcel/babel-preset-env": "@latest",
+    "@parcel/transformer-glsl": "2.0.0-nightly.2398",
+    "@parcel/transformer-image": "2.0.0-nightly.2398",
+    "@parcel/transformer-sass": "2.0.0-nightly.776",
     "autoprefixer": "^10.3.1",
     "css-mqpacker": "^7.0.0",
     "dat.gui": "^0.7.7",
