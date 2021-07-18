@@ -1,6 +1,7 @@
+#define PI 3.1415926535897932384626433832795
+
 uniform float uTime;
 uniform float uProgress;
-uniform vec2 uTextureSize;
 uniform vec2 uResolution;
 uniform vec2 uQuadSize;
 uniform vec4 uCorners;
@@ -24,7 +25,10 @@ void main(){
   uv.y
   );
 
-  vec4 finalState = mix(defaultState,fullScreenState,uCornerProgress);
+  float sine = sin(PI * uCornerProgress);
+  float waves = sine * 0.1 * sin(length(uv)*5. + 5. * uCornerProgress);
+
+  vec4 finalState = mix(defaultState,fullScreenState,uCornerProgress + waves);
 
   vSize = mix(uQuadSize,uResolution,uProgress);
 

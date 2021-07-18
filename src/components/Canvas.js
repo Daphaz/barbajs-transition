@@ -140,7 +140,6 @@ export default class Canvas {
     this.scene.add(this.mesh);
 
     this.mesh.position.x = 200;
-    this.mesh.rotation.z = 0.5;
   }
 
   /**
@@ -151,8 +150,8 @@ export default class Canvas {
     let ellapsedTime = this.clock.getElapsedTime();
 
     this.material.uniforms.uTime.value = ellapsedTime;
-    // this.material.uniforms.uProgress.value = this.settings.progress;
-    this.tl.progress(this.settings.progress);
+    this.material.uniforms.uProgress.value = this.settings.progress;
+    // this.tl.progress(this.settings.progress);
 
     this.controls.update();
 
