@@ -1,0 +1,19 @@
+$clr-black: #1a1a1a;
+$clr-white: #f9f0e5;
+$clr-gray: #868997;
+$clr-primary: #2bb1fb;
+$clr-red: #da004b;
+$clr-blue: #0e103d;
+
+$font-poppins: "Poppins", sans-serif;
+
+$ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+
+$z-indexes: (
+  "noscript",
+  "preloader",
+  "header",
+  "navigation",
+  "content",
+  "canvas"
+);

@@ -1,0 +1,25 @@
+%cover {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+%center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin nf {
+  &:not(:first-child) {
+    @content;
+  }
+}
+
+@mixin nl {
+  &:not(:last-child) {
+    @content;
+  }
+}

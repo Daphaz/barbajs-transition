@@ -1,0 +1,57 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+html {
+  @extend %cover;
+  font-size: calc(100vw / 1920 * 10);
+  line-height: 1;
+  position: fixed;
+  overflow: hidden;
+
+  @include media("<phone") {
+    font-size: calc(100vw / 750 * 10);
+  }
+}
+
+body {
+  @extend %cover;
+  @extend %description-16;
+  font-family: $font-poppins;
+  position: fixed;
+
+  background-color: $clr-blue;
+
+  transition: 0.3s ease;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  z-index: z("content");
+}
+
+a {
+  cursor: none;
+  text-decoration: none;
+  outline: none;
+  color: inherit;
+}
+
+canvas {
+  @extend %cover;
+
+  // pointer-events: none;
+  z-index: z("canvas");
+}
+
+button {
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: none;
+}
