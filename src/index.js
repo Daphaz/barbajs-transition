@@ -1,9 +1,11 @@
 import NormalizeWheel from "normalize-wheel";
+import ASScroll from '@ashthornton/asscroll'
 
 import Canvas from "./components/Canvas";
 
 class App {
   constructor() {
+    this.createASScroll();
     this.createCanvas();
 
     this.addEventListeners();
@@ -16,8 +18,19 @@ class App {
   createCanvas() {
     this.canvas = new Canvas({
       template: this.template,
-      domElement: document.querySelector("canvas.webgl"),
+      domElement: document.getElementById("container"),
+      scroll: this.asscroll
     });
+  }
+
+  createASScroll() {
+    this.asscroll = new ASScroll({
+      disableRaf: true
+    });
+
+    this.asscroll.enable({
+      horizontalScroll: true,
+    })
   }
 
   /**
@@ -62,6 +75,9 @@ class App {
    * Loop.
    */
   update() {
+    if(this.asscroll){
+      this.asscroll.update()
+    }
     if (this.canvas && this.canvas.update) {
       this.canvas.update();
     }

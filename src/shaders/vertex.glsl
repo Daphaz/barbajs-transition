@@ -1,7 +1,7 @@
 #define PI 3.1415926535897932384626433832795
 
-uniform float uTime;
 uniform float uProgress;
+uniform float uTime;
 uniform vec2 uResolution;
 uniform vec2 uQuadSize;
 uniform vec4 uCorners;
@@ -16,8 +16,8 @@ void main(){
 
   vec4 defaultState = modelMatrix * vec4(newPosition,1.0);
   vec4 fullScreenState = vec4(newPosition,1.0);
-  fullScreenState.x *= uResolution.x /uQuadSize.x;
-  fullScreenState.y *= uResolution.y / uQuadSize.y;
+  fullScreenState.x *= uResolution.x;
+  fullScreenState.y *= uResolution.y;
 
   float uCornerProgress = mix(
   mix(uCorners.z,uCorners.w,uv.x),
@@ -30,7 +30,7 @@ void main(){
 
   vec4 finalState = mix(defaultState,fullScreenState,uCornerProgress + waves);
 
-  vSize = mix(uQuadSize,uResolution,uProgress);
+  vSize = mix(uQuadSize,uResolution,uCornerProgress);
 
   gl_Position = projectionMatrix  * viewMatrix * finalState;
 }

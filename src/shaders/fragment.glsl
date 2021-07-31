@@ -1,4 +1,3 @@
-uniform float uProgress;
 uniform sampler2D uTexture;
 uniform vec2 uTextureSize;
 
