@@ -29,5 +29,9 @@
     "postcss": "^8.3.5",
     "prefix": "^1.0.0",
     "three": "^0.130.1"
+  },
+  "dependencies": {
+    "@ashthornton/asscroll": "^2.0.2",
+    "@barba/core": "^2.9.7"
   }
 }

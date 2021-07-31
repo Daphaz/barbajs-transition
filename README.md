@@ -19,3 +19,6 @@ npm run build
 # or
 yarn build
 ```
+
+### Version
+- v1.0.0 : transition page zoom effect
