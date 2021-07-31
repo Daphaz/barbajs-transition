@@ -17,7 +17,7 @@ export default class Canvas {
     this.width = this.container.offsetWidth;
     this.height = this.container.offsetHeight;
 
-    this.setupSetting();
+    // this.setupSetting();
 
     this.create();
     this.addObjects();
@@ -105,6 +105,30 @@ export default class Canvas {
     this.resize();
   }
 
+  addClickEvents(){
+      this.imageStore.forEach(i=>{
+          i.img.addEventListener('click',()=>{
+              GSAP.timeline()
+              .to(i.mesh.material.uniforms.uCorners.value,{
+                  x:1,
+                  duration: 0.4
+              })
+              .to(i.mesh.material.uniforms.uCorners.value,{
+                  y:1,
+                  duration: 0.4
+              },0.1)
+              .to(i.mesh.material.uniforms.uCorners.value,{
+                  z:1,
+                  duration: 0.4
+              },0.2)
+              .to(i.mesh.material.uniforms.uCorners.value,{
+                  w:1,
+                  duration: 0.4
+              },0.3)
+          })
+      })
+  }
+
   /**
    *  Add Object for Test.
    */
@@ -130,37 +154,6 @@ export default class Canvas {
       transparent: true,
     });
 
-    // Timeline.
-    this.tl = new GSAP.timeline()
-      .to(this.material.uniforms.uCorners.value, {
-        x: 1,
-        duration: 1,
-      })
-      .to(
-        this.material.uniforms.uCorners.value,
-        {
-          y: 1,
-          duration: 1,
-        },
-        0.1
-      )
-      .to(
-        this.material.uniforms.uCorners.value,
-        {
-          z: 1,
-          duration: 1,
-        },
-        0.2
-      )
-      .to(
-        this.material.uniforms.uCorners.value,
-        {
-          w: 1,
-          duration: 1,
-        },
-        0.3
-      );
-
     this.mesh = new THREE.Mesh(this.geometry, this.material);
     this.mesh.scale.set(300,300,1.0)
 
@@ -180,8 +173,6 @@ export default class Canvas {
       m.uniforms.uTexture.value = texture;
       m.uniforms.uTexture.value = texture;
 
-
-
       let mesh = new THREE.Mesh(this.geometry,m);
       this.scene.add(mesh);
       mesh.scale.set(bounds.width,bounds.height,1);
@@ -198,10 +189,10 @@ export default class Canvas {
   }
 
   setPosition(){
-    this.imageStore.forEach(o => {
-      o.mesh.position.x = -this.scroll.currentPos + o.left - this.width / 2 + o.width / 2;
-      o.mesh.position.y = -o.top + this.height / 2 - o.height / 2;
-    })
+      this.imageStore.forEach(o => {
+        o.mesh.position.x = -this.scroll.currentPos + o.left - this.width / 2 + o.width / 2;
+        o.mesh.position.y = -o.top + this.height / 2 - o.height / 2;
+      })
   }
 
   /**
@@ -215,7 +206,7 @@ export default class Canvas {
 
     this.material.uniforms.uTime.value = ellapsedTime;
     // this.material.uniforms.uProgress.value = this.settings.progress;
-    this.tl.progress(this.settings.progress);
+    // this.tl.progress(this.settings.progress);
 
     this.controls.update();
 
